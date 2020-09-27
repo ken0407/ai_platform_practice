@@ -4,13 +4,12 @@ import subprocess
 import sys
 from typing import Iterable, Tuple
 from pathlib import Path
-import tempfile
 
 import pandas as pd
 import numpy as np
 from sklearn import svm
 import pickle
-from config import (
+from ai_platform_practice.config import (
     dir_name as dir_name_,
     iris_data_filename,
     iris_target_filename,
@@ -63,11 +62,9 @@ def upload_model(model_filename: str) -> None:
 def main() -> None:
     fetch_iris_data(dir_name_, [iris_data_filename, iris_target_filename])
     feature, target = load_data(iris_data_filename, iris_target_filename)
-    with tempfile.TemporaryDirectory() as directory:
-        file_path = Path(directory) / model_filename_
-        with open(file_path, mode="wb") as f:
-            pickle.dump(train_model(feature, target), f)
-        upload_model(file_path)
+    with open(model_filename_, mode="wb") as f:
+        pickle.dump(train_model(feature, target), f)
+    upload_model(model_filename_)
 
 
 if __name__ == "__main__":

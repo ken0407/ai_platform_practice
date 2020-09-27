@@ -76,7 +76,7 @@ class UploadModel(unittest.TestCase):
         import datetime
         from dotenv import load_dotenv
         from pathlib import Path
-        from config import model_upload_format
+        from ai_platform_practice.config import model_upload_format
 
         model_filename = "test_model_file.pkl"
         load_dotenv(Path(__file__).parents[1] / ".env")
