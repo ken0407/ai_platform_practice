@@ -63,16 +63,11 @@ def upload_model(model_filename: str) -> None:
 def main() -> None:
     fetch_data(dir_name_, [iris_data_filename, iris_target_filename])
     feature, target = load_data(iris_data_filename, iris_target_filename)
-    with tempfile.TemporaryDirectory() as dir:
-        file_path = Path(dir) / model_filename_
+    with tempfile.TemporaryDirectory() as directory:
+        file_path = Path(directory) / model_filename_
         with open(file_path, mode="wb") as f:
             pickle.dump(train_model(feature, target), f)
         upload_model(file_path)
-
-
-
-
-
 
 
 if __name__ == "__main__":
