@@ -30,14 +30,14 @@ class DataFetcher:
                                file_name], stderr=sys.stdout)
 
 
-def fetch_data(dir_name: str, filename_list: Iterable) -> None:
+def fetch_iris_data(dir_name: str, filename_list: Iterable) -> None:
     data_loader = DataFetcher(dir_name)
     for file_name in filename_list:
         data_loader.fetch_data(file_name)
 
 
-def load_data(train_file: str, target_file: str) -> Tuple:
-    feature = pd.read_csv(train_file).values
+def load_data(feature_file: str, target_file: str) -> Tuple:
+    feature = pd.read_csv(feature_file).values
     target = pd.read_csv(target_file).values
 
     return feature, target.reshape((target.size,))
@@ -61,7 +61,7 @@ def upload_model(model_filename: str) -> None:
 
 
 def main() -> None:
-    fetch_data(dir_name_, [iris_data_filename, iris_target_filename])
+    fetch_iris_data(dir_name_, [iris_data_filename, iris_target_filename])
     feature, target = load_data(iris_data_filename, iris_target_filename)
     with tempfile.TemporaryDirectory() as directory:
         file_path = Path(directory) / model_filename_
