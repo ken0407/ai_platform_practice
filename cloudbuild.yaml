@@ -1,5 +1,5 @@
 steps:
-  - name: 3.7-slim
+  - name: '3.7-slim'
     args: ["make", "test"]
     env:
       - 'BUCKET_NAME=$_BUCKET_NAME'
