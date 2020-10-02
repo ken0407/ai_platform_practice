@@ -1,5 +1,5 @@
 steps:
-  - name: google/cloud-sdk:293.0.0
+  - name: 3.7-slim
     args: ["make", "test"]
     env:
       - 'BUCKET_NAME=$_BUCKET_NAME'
