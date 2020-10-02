@@ -1,5 +1,5 @@
 steps:
-  - name: 'python:3.7-stretch'
+  - name: 'python'
     args: ["make", "test"]
     env:
       - 'BUCKET_NAME=$_BUCKET_NAME'
