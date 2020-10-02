@@ -16,7 +16,6 @@ from ai_platform_practice.config import (
     model_filename as model_filename_,
     model_upload_format,
 )
-from dotenv import load_dotenv
 
 
 class DataFetcher:
@@ -49,7 +48,6 @@ def train_model(feature: np.array, target: np.array) -> object:
 
 
 def upload_model(model_filename: str) -> None:
-    load_dotenv(Path(__file__).parents[1] / ".env")
     gcs_model_path = os.path.join(
         "gs://",
         os.getenv("BUCKET_NAME"),
