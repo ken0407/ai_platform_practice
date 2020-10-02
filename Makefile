@@ -1,4 +1,5 @@
-export $(cat .env | xargs)
+#!make
+include .env
 
 test:
 	pytest -v -m ""
@@ -8,8 +9,8 @@ local_training:
 		--package-path $TRAINING_PACKAGE_PATH \
 		--module-name $MAIN_TRAINER_MODULE
 
-job_request:
-	gcloud ai-platform jobs submit training ${JOB_NAME} \
+training:
+	export -e $(cat .env) | xargs ; gcloud ai-platform jobs submit training ${JOB_NAME} \
 		--job-dir ${JOB_DIR} \
 		--package-path ${TRAINING_PACKAGE_PATH} \
 		--module-name ${MAIN_TRAINER_MODULE} \
