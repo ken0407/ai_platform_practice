@@ -1,5 +1,5 @@
 steps:
-  - name: 'python'
+  - name: google/cloud-sdk:293.0.0
     args: ["make", "ci"]
     env:
       - 'BUCKET_NAME=$_BUCKET_NAME'
