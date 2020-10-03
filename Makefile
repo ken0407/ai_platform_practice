@@ -14,7 +14,7 @@ local_training:
 		--module-name ${MAIN_TRAINER_MODULE}
 
 training:
-	gcloud ai-platform jobs submit training ${REVISION_ID} \
+	gcloud ai-platform jobs submit training ${BUILD_ID} \
 		--job-dir ${JOB_DIR} \
 		--package-path ${TRAINING_PACKAGE_PATH} \
 		--module-name ${MAIN_TRAINER_MODULE} \
