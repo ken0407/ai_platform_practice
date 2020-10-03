@@ -3,7 +3,6 @@ import os
 import subprocess
 import sys
 from typing import Iterable, Tuple
-from pathlib import Path
 
 import pandas as pd
 import numpy as np
@@ -50,7 +49,7 @@ def train_model(feature: np.array, target: np.array) -> object:
 def upload_model(model_filename: str) -> None:
     gcs_model_path = os.path.join(
         "gs://",
-        os.getenv("BUCKET_NAME"),
+        os.environ.get("BUCKET_NAME"),
         datetime.datetime.now().strftime(model_upload_format),
         model_filename,
     )

@@ -10,11 +10,11 @@ test:
 
 local_training:
 	gcloud ai-platform local train \
-		--package-path $TRAINING_PACKAGE_PATH \
-		--module-name $MAIN_TRAINER_MODULE
+		--package-path ${TRAINING_PACKAGE_PATH} \
+		--module-name ${MAIN_TRAINER_MODULE}
 
 training:
-	gcloud ai-platform jobs submit training training_${date +%Y%m%d%s} \
+	gcloud ai-platform jobs submit training ${REVISION_ID} \
 		--job-dir ${JOB_DIR} \
 		--package-path ${TRAINING_PACKAGE_PATH} \
 		--module-name ${MAIN_TRAINER_MODULE} \
