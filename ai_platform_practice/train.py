@@ -1,6 +1,7 @@
 import datetime
-import os, sys
+import os
 import subprocess
+import sys
 from typing import Iterable, Tuple
 from pathlib import Path
 
