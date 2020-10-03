@@ -3,7 +3,7 @@
 ci:
 	docker image build -t training .
 	docker run training make test
-	docker run training make training
+	make training
 
 test:
 	pytest -v -m ""
