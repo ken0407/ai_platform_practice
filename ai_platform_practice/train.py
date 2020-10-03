@@ -48,8 +48,7 @@ def train_model(feature: np.array, target: np.array) -> object:
 
 def upload_model(model_filename: str) -> None:
     gcs_model_path = os.path.join(
-        "gs://",
-        os.environ.get("BUCKET_NAME"),
+        "gs://kex5n",
         datetime.datetime.now().strftime(model_upload_format),
         model_filename,
     )
