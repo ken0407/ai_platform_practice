@@ -1,6 +1,6 @@
 steps:
   - name: 'python'
-    args: ["make", "test"]
+    args: ["make", "ci"]
     env:
       - 'BUCKET_NAME=$_BUCKET_NAME'
       - 'JOB_DIR=$_JOB_DIR'

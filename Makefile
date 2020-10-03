@@ -1,5 +1,9 @@
 #!make
 
+ci:
+	docker image build -t training .
+	docker run training make test
+
 test:
 	pytest -v -m ""
 
