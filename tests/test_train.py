@@ -82,8 +82,7 @@ class UploadModel(unittest.TestCase):
         load_dotenv(Path(__file__).parents[1] / ".env")
 
         gcs_model_path = os.path.join(
-            "gs://",
-            os.getenv("BUCKET_NAME"),
+            "gs://kex5n",
             datetime.datetime.now().strftime(model_upload_format),
             model_filename,
         )
