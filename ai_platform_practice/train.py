@@ -1,20 +1,18 @@
 import datetime
 import os
+import pickle
 import subprocess
 import sys
 from typing import Iterable, Tuple
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 from sklearn import svm
-import pickle
-from ai_platform_practice.config import (
-    dir_name as dir_name_,
-    iris_data_filename,
-    iris_target_filename,
-    model_filename as model_filename_,
-    model_upload_format,
-)
+
+from ai_platform_practice.config import dir_name as dir_name_
+from ai_platform_practice.config import iris_data_filename, iris_target_filename
+from ai_platform_practice.config import model_filename as model_filename_
+from ai_platform_practice.config import model_upload_format
 
 
 class DataFetcher:
@@ -22,9 +20,9 @@ class DataFetcher:
         self.dir_name = dir_name
 
     def fetch_data(self, file_name: str) -> None:
-        subprocess.check_call(['gsutil', 'cp', os.path.join(self.dir_name,
-                                                            file_name),
-                               file_name], stderr=sys.stdout)
+        subprocess.check_call(
+            ["gsutil", "cp", os.path.join(self.dir_name, file_name), file_name], stderr=sys.stdout
+        )
 
 
 def fetch_iris_data(dir_name: str, filename_list: Iterable) -> None:
@@ -41,16 +39,14 @@ def load_data(feature_file: str, target_file: str) -> Tuple:
 
 
 def train_model(feature: np.array, target: np.array) -> object:
-    classifier = svm.SVC(gamma='auto', verbose=True)
+    classifier = svm.SVC(gamma="auto", verbose=True)
 
     return classifier.fit(feature, target)
 
 
 def upload_model(model_filename: str) -> None:
     gcs_model_path = os.path.join(
-        "gs://kex5n",
-        datetime.datetime.now().strftime(model_upload_format),
-        model_filename,
+        "gs://kex5n", datetime.datetime.now().strftime(model_upload_format), model_filename,
     )
     subprocess.check_call(["gsutil", "cp", model_filename, gcs_model_path])
 

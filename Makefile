@@ -6,7 +6,12 @@ ci:
 	make training
 
 test:
+	make format
 	pytest -v -m ""
+
+format:
+	isort ai_platform_practice/*.py
+	black -l 100 ai_platform_practice
 
 local_training:
 	gcloud ai-platform local train \
